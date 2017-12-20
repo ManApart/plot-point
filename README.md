@@ -1,6 +1,6 @@
-#Plot Point
+# Plot Point
 
-##Design Goals
+## Design Goals
 
 text editor
 all text is version controlled
@@ -9,12 +9,18 @@ any topic mentioned anywhere is a link to that topic
 any topic can provide all references to that topic
 multiple windows can be moved around and contain different documents
 
-##Implementation Details
+## Implementation Details
 Write topics as json to file system
 
-topic
--type
--name (must be unique)
--text
+Topic
+
+* type
+* name (must be unique)
+* text
 
 relationships generated at runtime
+
+## UI
+Browse all topics, sorted by type and then name
+Click a topic to open its display
+References are underlined and clickable
