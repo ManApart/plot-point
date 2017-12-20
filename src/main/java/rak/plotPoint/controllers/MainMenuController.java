@@ -10,8 +10,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import rak.plotPoint.MainManager;
 import rak.plotPoint.model.Topic;
@@ -24,13 +22,13 @@ public class MainMenuController {
 	private static final Logger LOG = Logger.getLogger(MainMenuController.class.getName()); 
 	private static final int NUMBER_OF_HEADER_ROWS = 1;
 	
-	@FXML private TextField topicTitle;
-	@FXML private TextArea topicDescription;
 	@FXML private Button saveBtn;
 	@FXML private Button loadBtn;
 	@FXML private GridPane peopleGrid;
 	@FXML private GridPane locationGrid;
 	@FXML private GridPane plotPointGrid;
+	
+	@FXML private TopicDisplayController topicDisplayController = new TopicDisplayController();
 	
 	private MainManager manager = new MainManager();
 	
@@ -38,6 +36,7 @@ public class MainMenuController {
 		LOG.info("Initializing main manager");
 		manager.runLoadTest();
 		displayTopics();
+		topicDisplayController.updateTopicWindow(manager.getPeopleTopics().get(0));
 	}
 	
 	@FXML
@@ -88,6 +87,7 @@ public class MainMenuController {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent arg0) {
 				LOG.info("Clicked button for " + topic.getName());
+				topicDisplayController.updateTopicWindow(topic);
 			}
 		});
 			
@@ -96,5 +96,4 @@ public class MainMenuController {
 		grid.getChildren().add(btn);
 	}
 	
-
 }
