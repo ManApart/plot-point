@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -20,6 +21,7 @@ public class PlotPointApplication extends Application {
 		try {
 			primaryStage.setTitle("Plot Point");
 			setScene(MAIN_MENU);
+			primaryStage.getIcons().add(new Image(PlotPointApplication.class.getResourceAsStream("images/Logo Icon.png")));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

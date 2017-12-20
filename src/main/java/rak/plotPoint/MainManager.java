@@ -17,21 +17,7 @@ public class MainManager {
 	private List<Topic> plotPoints = new ArrayList<Topic>();
 	
 	public MainManager(){
-		loadTopics();
-	}
-	
-	private void loadTopics(){
-		List<Topic> topics = dao.getTopics();
-		for (Topic topic : topics){
-			if (topic.getType() == TopicType.PERSON){
-				people.add(topic);
-			} else if (topic.getType() == TopicType.LOCATION){
-				locations.add(topic);
-			} else if (topic.getType() == TopicType.PLOT_POINT){
-				plotPoints.add(topic);
-			}
-		}
-		
+		load();
 	}
 	
 	public void runLoadTest(){
@@ -39,7 +25,6 @@ public class MainManager {
 		List<Topic> topics = dao.getTopics();
 		LOG.info(String.format("grabbed %d topics", topics.size()));
 		dao.save(topics);
-		
 	}
 
 	public List<Topic> getPeopleTopics() {
@@ -52,5 +37,33 @@ public class MainManager {
 	
 	public List<Topic> getPlotPointTopics() {
 		return new ArrayList<Topic>(plotPoints);
+	}
+	
+	private List<Topic> getAllTopics() {
+		List<Topic> topics = new ArrayList<Topic>();
+		topics.addAll(people);
+		topics.addAll(locations);
+		topics.addAll(plotPoints);
+		return topics;
+	}
+
+	public void load() {
+		//TODO -file chooser, load save etc
+		LOG.info("load");
+		List<Topic> topics = dao.getTopics();
+		for (Topic topic : topics){
+			if (topic.getType() == TopicType.PERSON){
+				people.add(topic);
+			} else if (topic.getType() == TopicType.LOCATION){
+				locations.add(topic);
+			} else if (topic.getType() == TopicType.PLOT_POINT){
+				plotPoints.add(topic);
+			}
+		}
+	}
+
+	public void save() {
+		LOG.info("save");
+		dao.save(getAllTopics());
 	}
 }

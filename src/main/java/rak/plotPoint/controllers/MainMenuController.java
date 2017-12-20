@@ -22,8 +22,6 @@ public class MainMenuController {
 	private static final Logger LOG = Logger.getLogger(MainMenuController.class.getName()); 
 	private static final int NUMBER_OF_HEADER_ROWS = 1;
 	
-	@FXML private Button saveBtn;
-	@FXML private Button loadBtn;
 	@FXML private GridPane peopleGrid;
 	@FXML private GridPane locationGrid;
 	@FXML private GridPane plotPointGrid;
@@ -43,6 +41,17 @@ public class MainMenuController {
 	private void exit(){
 		Platform.exit();
 		System.exit(0);
+	}
+	
+	@FXML
+	private void save(){
+		manager.save();
+	}
+	
+	@FXML
+	private void load(){
+		manager.load();
+		
 	}
 	
 	private void displayTopics(){
