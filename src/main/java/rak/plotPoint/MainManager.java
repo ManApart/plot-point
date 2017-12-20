@@ -1,11 +1,11 @@
-package plotPoint;
+package rak.plotPoint;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-import plotPoint.model.Topic;
-import plotPoint.persistance.DAO;
-import plotPoint.persistance.JsonDao;
+import rak.plotPoint.model.Topic;
+import rak.plotPoint.persistance.DAO;
+import rak.plotPoint.persistance.JsonDao;
 
 public class MainManager {
 	private static final Logger LOG = Logger.getLogger(MainManager.class.getName()); 

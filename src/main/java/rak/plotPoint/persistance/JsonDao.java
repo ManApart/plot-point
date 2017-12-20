@@ -1,4 +1,4 @@
-package plotPoint.persistance;
+package rak.plotPoint.persistance;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import plotPoint.model.Topic;
+import rak.plotPoint.model.Topic;
 
 public class JsonDao implements DAO {
 	private static final String HARD_CODED_TEST = "B:\\Documents\\'s Wordpad\\A Writings\\Plot Point\\test story";

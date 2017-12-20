@@ -1,4 +1,4 @@
-package plotPoint;
+package rak.plotPoint;
 	
 import javafx.application.Application;
 import javafx.scene.Scene;

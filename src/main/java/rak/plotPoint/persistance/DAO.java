@@ -1,8 +1,8 @@
-package plotPoint.persistance;
+package rak.plotPoint.persistance;
 
 import java.util.List;
 
-import plotPoint.model.Topic;
+import rak.plotPoint.model.Topic;
 
 public interface DAO {
 	void save(List<Topic> topics);

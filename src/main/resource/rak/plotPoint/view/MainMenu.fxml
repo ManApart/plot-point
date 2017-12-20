@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="10.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/MainMenu.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rak.planetGenerator.controllers.MainMenuController">
+	<columnConstraints>
+		<ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="400.0" />
+		<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+	</rowConstraints>
+	<children>
+		<GridPane hgap="10.0" stylesheets="@../css/MainMenu.css" vgap="10.0" GridPane.columnIndex="1">
+			<columnConstraints>
+				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="ALWAYS" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+			</rowConstraints>
+			<children>
+				<TabPane maxWidth="1.7976931348623157E308" prefHeight="215.0" prefWidth="178.0" tabClosingPolicy="UNAVAILABLE" GridPane.vgrow="ALWAYS">
+					<tabs>
+						<Tab text="Generation">
+                     <content>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                  				<GridPane>
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<TextField fx:id="userEnteredSeed" text="123" GridPane.columnIndex="1" />
+                  						<Label text="New Seed" />
+                  					</children>
+                  				</GridPane>
+                  				<GridPane GridPane.rowIndex="4">
+                  					<columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<Button mnemonicParsing="false" onAction="#generateRandom" text="Random" GridPane.columnIndex="2" />
+                  						<Button mnemonicParsing="false" onAction="#generate" text="Generate" GridPane.columnIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#reDrawPlanet" text="Redraw" />
+                  					</children>
+                  				</GridPane>
+                  				<GridPane GridPane.rowIndex="1">
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<TextField fx:id="userEnteredDensity" text="400" GridPane.columnIndex="1" />
+                  						<Label text="New Density" />
+                  					</children>
+                  				</GridPane>
+                  				<Button mnemonicParsing="false" onAction="#toggleSphere" text="Toggle Sphere" GridPane.rowIndex="7" />
+                  				<GridPane GridPane.rowIndex="5">
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<children>
+                  						<Label fx:id="message" GridPane.columnIndex="1" />
+                  						<Label text="Message" />
+                  					</children>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  					</rowConstraints>
+                  				</GridPane>
+                  				<GridPane GridPane.rowIndex="2">
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<TextField fx:id="userEnteredScale" text="1" GridPane.columnIndex="1" />
+                  						<Label text="New Scale" />
+                  					</children>
+                  				</GridPane>
+                  				<GridPane GridPane.rowIndex="3">
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<Label text="Planet Type" />
+                  						<ChoiceBox fx:id="planetType" prefWidth="150.0" GridPane.columnIndex="1" />
+                  					</children>
+                  				</GridPane>
+                  				<GridPane GridPane.rowIndex="6">
+                  					<columnConstraints>
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  					</columnConstraints>
+                  					<rowConstraints>
+                  						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  					</rowConstraints>
+                  					<children>
+                  						<Label text="View" />
+                  						<ChoiceBox fx:id="viewType" prefWidth="150.0" GridPane.columnIndex="1" />
+                  					</children>
+                  				</GridPane>
+                           </children>
+                        </GridPane>
+                     </content></Tab>
+						<Tab text="Shadow">
+							<content>
+								<fx:include fx:id="shadowView" source="ShadowPane.fxml" />
+							</content>
+						</Tab>
+						<Tab text="Height">
+							<content>
+								<fx:include fx:id="heightGenView" source="HeightGenPane.fxml" />
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+				<Button mnemonicParsing="false" onAction="#exit" text="Exit" GridPane.rowIndex="1" />
+			</children>
+			<padding>
+				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+			</padding>
+		</GridPane>
+		<Pane fx:id="viewBackground" prefHeight="200.0" prefWidth="200.0">
+			<children>
+				<Canvas height="550.0" width="400.0" />
+			</children>
+		</Pane>
+	</children>
+	<padding>
+		<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+	</padding>
+</GridPane>

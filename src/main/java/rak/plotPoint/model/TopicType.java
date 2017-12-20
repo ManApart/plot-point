@@ -1,4 +1,4 @@
-package plotPoint.model;
+package rak.plotPoint.model;
 
 public enum TopicType {
 	PERSON,
