@@ -50,6 +50,11 @@ public class MainManager {
 	public void load() {
 		//TODO -file chooser, load save etc
 		LOG.info("load");
+		people = new ArrayList<Topic>();
+		locations = new ArrayList<Topic>();
+		plotPoints = new ArrayList<Topic>();
+		
+		
 		List<Topic> topics = dao.getTopics();
 		for (Topic topic : topics){
 			if (topic.getType() == TopicType.PERSON){
