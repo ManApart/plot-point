@@ -1,18 +1,14 @@
 package rak.plotPoint.controllers;
 
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import rak.plotPoint.MainManager;
 import rak.plotPoint.model.Topic;
+import rak.plotPoint.utility.gridHelper.GridHelper;
 
 /**
  * TODO - eventually break this out to control smaller chunks
@@ -20,7 +16,6 @@ import rak.plotPoint.model.Topic;
  */
 public class MainMenuController {
 	private static final Logger LOG = Logger.getLogger(MainMenuController.class.getName()); 
-	private static final int NUMBER_OF_HEADER_ROWS = 1;
 	
 	@FXML private GridPane peopleGrid;
 	@FXML private GridPane locationGrid;
@@ -30,8 +25,21 @@ public class MainMenuController {
 	
 	private MainManager manager = new MainManager();
 	
+	private GridHelper<TopicNameStrategy, TopicParam> peopleGridHelper;
+	private GridHelper<TopicNameStrategy, TopicParam> locationGridHelper;
+	private GridHelper<TopicNameStrategy, TopicParam> plotPointGridHelper;
+	
 	public void initialize(){
 		LOG.info("Initializing main manager");
+		
+		topicDisplayController.setMainController(this);
+		topicDisplayController.setManager(manager);
+		
+		peopleGridHelper = new GridHelper<TopicNameStrategy, TopicParam>(peopleGrid, new TopicNameStrategy(topicDisplayController));
+		locationGridHelper = new GridHelper<TopicNameStrategy, TopicParam>(locationGrid, new TopicNameStrategy(topicDisplayController));
+		plotPointGridHelper = new GridHelper<TopicNameStrategy, TopicParam>(plotPointGrid, new TopicNameStrategy(topicDisplayController));
+		
+		
 		manager.runLoadTest();
 		displayTopics();
 		topicDisplayController.updateTopicWindow(manager.getPeopleTopics().get(0));
@@ -51,58 +59,25 @@ public class MainMenuController {
 	@FXML
 	private void load(){
 		manager.load();
-		
+	}
+	
+	/*
+	 * Given some text, read through list of topics and display the closest match
+	 */
+	public void searchForTopic(String text){
+		Topic topic = manager.getTopic(text);
+		if (topic != null){
+			topicDisplayController.updateTopicWindow(topic);
+		}
 	}
 	
 	private void displayTopics(){
-		refreshList(peopleGrid, manager.getPeopleTopics());
-		refreshList(locationGrid, manager.getLocationTopics());
-		refreshList(plotPointGrid, manager.getPlotPointTopics());
+		peopleGridHelper.refreshList(TopicParam.fromTopics(manager.getPeopleTopics()));
+		locationGridHelper.refreshList(TopicParam.fromTopics(manager.getLocationTopics()));
+		plotPointGridHelper.refreshList(TopicParam.fromTopics(manager.getPlotPointTopics()));
 		
 	}
 	
-	private void refreshList(GridPane grid, List<Topic> topics){
-		if (grid != null){
-			clearAllRowsButHeader(grid);
-			addRows(grid, topics);
-		}
-	}
 	
-	private void clearAllRowsButHeader(GridPane grid) {
-		for (int i=grid.getChildren().size()-1; i>0; i--){
-			Node child = grid.getChildren().get(i);
-			if (isBodyRow(child)){
-				grid.getChildren().remove(i);
-			}
-		}
-	}
-	
-	private boolean isBodyRow(Node child){
-		Integer row = GridPane.getRowIndex(child);
-		return row != null && row > NUMBER_OF_HEADER_ROWS-1;
-	}
-
-	private void addRows(GridPane grid, List<Topic> topics) {
-		
-		for (int i=0; i<topics.size(); i++){
-			Topic topic = topics.get(i);
-			int row = i + NUMBER_OF_HEADER_ROWS;
-			addRow(grid, row, topic);
-		}
-	}
-
-	private void addRow(GridPane grid, int row, final Topic topic) {
-		Button btn = new Button(topic.getName());
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent arg0) {
-				LOG.info("Clicked button for " + topic.getName());
-				topicDisplayController.updateTopicWindow(topic);
-			}
-		});
-			
-		GridPane.setRowIndex(btn, row);
-		GridPane.setColumnIndex(btn, 0);
-		grid.getChildren().add(btn);
-	}
 	
 }

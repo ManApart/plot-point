@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang3.StringUtils;
+
+import rak.plotPoint.model.Reference;
 import rak.plotPoint.model.Topic;
 import rak.plotPoint.model.TopicType;
 import rak.plotPoint.persistance.DAO;
@@ -70,5 +73,33 @@ public class MainManager {
 	public void save() {
 		LOG.info("save");
 		dao.save(getAllTopics());
+	}
+
+	/*
+	 * Given some text, read through list of topics and display the closest match
+	 */
+	public Topic getTopic(String text) {
+		LOG.info("Manager grabbing topic for " + text);
+		for (Topic otherTopic : getAllTopics()){
+			if (StringUtils.containsIgnoreCase(otherTopic.getName(), text)){
+				//TODO - eventually grab best match instead of first match
+				return otherTopic;
+			}
+		}
+		return null;
+	}
+
+	public List<Reference> getReferences(Topic topic) {
+		LOG.info("Manager grabbing references of " + topic.getName());
+		List<Reference> references = new ArrayList<Reference>();
+		
+		for (Topic otherTopic : getAllTopics()){
+			Reference reference = otherTopic.getReference(topic.getName());
+			if (reference != null){
+				references.add(reference);
+			}
+		}
+		
+		return references;
 	}
 }
